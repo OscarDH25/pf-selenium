@@ -1,0 +1,7 @@
+name: pf-selenium
+
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
