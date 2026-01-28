@@ -1,0 +1,266 @@
+:root {
+  --bg: #0b0f17;
+  --card: #121a27;
+  --text: #e7eefc;
+  --muted: #9fb0c8;
+  --border: rgba(255, 255, 255, 0.08);
+  --primary: #4f8cff;
+  --primary-2: #2f6fff;
+  --danger: #ff4f6d;
+  --ok: #2ecc71;
+  --warn: #f1c40f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+  "Apple Color Emoji", "Segoe UI Emoji";
+  background: radial-gradient(1200px 800px at 20% 0%, #111b2a 0%, var(--bg) 55%);
+  color: var(--text);
+}
+
+.container {
+  width: min(1050px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+header.container {
+  padding: 28px 0 8px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: 0.3px;
+}
+
+.subtitle {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 16px;
+  padding: 16px 0 22px;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  header.container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .status {
+    justify-content: space-between;
+  }
+}
+
+.card {
+  background: linear-gradient(180deg, var(--card), rgba(18, 26, 39, 0.8));
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+}
+
+.card h2 {
+  margin: 0 0 12px;
+  font-size: 18px;
+}
+
+.card h3 {
+  margin: 0 0 10px;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 14px 0;
+}
+
+.form {
+  display: grid;
+  gap: 8px;
+}
+
+.label {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  outline: none;
+}
+
+.input:focus {
+  border-color: rgba(79, 140, 255, 0.7);
+  box-shadow: 0 0 0 3px rgba(79, 140, 255, 0.15);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #fff;
+  transition: transform 0.05s ease, opacity 0.2s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, var(--primary), var(--primary-2));
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.18);
+  font-size: 13px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.badge.ok {
+  color: #d9ffe8;
+  border-color: rgba(46, 204, 113, 0.35);
+  background: rgba(46, 204, 113, 0.12);
+}
+
+.badge.warn {
+  color: #fff7d1;
+  border-color: rgba(241, 196, 15, 0.35);
+  background: rgba(241, 196, 15, 0.12);
+}
+
+.badge.err {
+  color: #ffe0e6;
+  border-color: rgba(255, 79, 109, 0.35);
+  background: rgba(255, 79, 109, 0.12);
+}
+
+.hint {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+  "Courier New", monospace;
+  font-size: 12px;
+}
+
+.inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.list {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.list li {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.list .pill {
+  font-size: 12px;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 4px 8px;
+  border-radius: 999px;
+}
+
+.bullets {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.pre {
+  margin: 0;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.2);
+  overflow: auto;
+  color: var(--text);
+  font-size: 12px;
+}
+
+.footer {
+  padding: 10px 0 28px;
+  display: flex;
+  justify-content: center;
+}

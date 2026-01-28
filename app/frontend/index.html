@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pf-selenium</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+<header class="container">
+  <div class="brand">
+    <h1>pf-selenium</h1>
+    <p class="subtitle">Backend + UI bootstrap (Docker + Spring Boot)</p>
+  </div>
+
+  <div class="status">
+    <span class="badge" id="healthBadge">Checking...</span>
+    <button class="btn btn-secondary" id="refreshHealthBtn" type="button">
+      Refresh health
+    </button>
+  </div>
+</header>
+
+<main class="container grid">
+  <section class="card">
+    <h2>Create user</h2>
+
+    <form id="createUserForm" class="form">
+      <label class="label" for="username">Username</label>
+      <input
+        class="input"
+        id="username"
+        name="username"
+        type="text"
+        placeholder="e.g. test-user"
+        autocomplete="off"
+        required
+      />
+
+      <div class="actions">
+        <button class="btn btn-primary" type="submit">Create</button>
+        <button class="btn btn-secondary" id="clearBtn" type="button">
+          Clear
+        </button>
+      </div>
+    </form>
+
+    <p class="hint">
+      This calls <code>POST /api/users</code> and then refreshes the list.
+    </p>
+
+    <div class="divider"></div>
+
+    <div class="inline">
+      <button class="btn btn-secondary" id="refreshUsersBtn" type="button">
+        Refresh users
+      </button>
+      <span class="muted" id="usersCount">0 users</span>
+    </div>
+
+    <ul class="list" id="usersList"></ul>
+  </section>
+
+  <section class="card">
+    <h2>Notes</h2>
+    <ul class="bullets">
+      <li>Frontend is served by Nginx.</li>
+      <li>API calls go through Nginx as <code>/api</code> → Spring Boot.</li>
+      <li>
+        If you can load this page and health is OK, the basic wiring works.
+      </li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <h3>Debug</h3>
+    <pre class="pre" id="debugBox">Ready.</pre>
+  </section>
+</main>
+
+<footer class="container footer">
+  <span class="muted">pf-selenium • Local development</span>
+</footer>
+
+<script src="./app.js"></script>
+</body>
+</html>
