@@ -5,3 +5,29 @@ services:
     image: nginx:alpine
     ports:
       - "8080:80"
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./app/backend
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "8081:8081"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: pf
+      POSTGRES_USER: pf_user
+      POSTGRES_PASSWORD: pf_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - pf_db_data:/var/lib/postgresql/data
+
+volumes:
+  pf_db_data:
