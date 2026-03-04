@@ -37,6 +37,11 @@ jobs:
           done
           curl -fsS http://localhost:4444/wd/hub/status > /dev/null
 
+      - name: Ensure wrappers are executable
+        run: |
+          chmod +x api-tests/mvnw
+          chmod +x e2e-java/mvnw
+
       - name: API tests
         run: ./api-tests/mvnw test
 
