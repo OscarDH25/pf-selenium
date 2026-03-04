@@ -25,9 +25,9 @@ async function run() {
     const resetUsersBtn = await driver.findElement(byTestId("reset-users-btn"));
     await resetUsersBtn.click();
 
-    const debugBox = await driver.findElement(byTestId("debug-box"));
+    const usersCount = await driver.findElement(byTestId("users-count"));
     await driver.wait(
-      async () => (await debugBox.getText()).includes("Users reset."),
+      async () => (await usersCount.getText()).trim() === "0 users",
       10000,
       "Reset did not complete"
     );
