@@ -72,6 +72,14 @@
       >
         Refresh users
       </button>
+      <button
+        class="btn btn-secondary"
+        id="resetUsersBtn"
+        type="button"
+        data-testid="reset-users-btn"
+      >
+        Reset users
+      </button>
       <span class="muted" id="usersCount" data-testid="users-count">0 users</span>
     </div>
 
@@ -82,7 +90,7 @@
     <h2 data-testid="notes-title">Notes</h2>
     <ul class="bullets" data-testid="notes-list">
       <li>Frontend is served by Nginx.</li>
-      <li>API calls go through Nginx as <code>/api</code> → Spring Boot.</li>
+      <li>API calls go through Nginx as <code>/api</code> -> Spring Boot.</li>
       <li>
         If you can load this page and health is OK, the basic wiring works.
       </li>
@@ -96,9 +104,10 @@
 </main>
 
 <footer class="container footer">
-  <span class="muted" data-testid="footer-text">pf-selenium • Local development</span>
+  <span class="muted" data-testid="footer-text">pf-selenium - Local development</span>
 </footer>
 
 <script src="./app.js"></script>
 </body>
 </html>
+

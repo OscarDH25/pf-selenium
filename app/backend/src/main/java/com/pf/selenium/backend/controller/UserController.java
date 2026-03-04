@@ -2,6 +2,9 @@ package com.pf.selenium.backend.controller;
 
 import com.pf.selenium.backend.domain.User;
 import com.pf.selenium.backend.repository.UserRepository;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +25,8 @@ public class UserController {
   }
 
   @PostMapping
-  public User create(@RequestBody User user) {
-    return repository.save(new User(user.getUsername()));
+  public ResponseEntity<User> create(@Valid @RequestBody User user) {
+    User created = repository.save(new User(user.getUsername()));
+    return ResponseEntity.status(HttpStatus.CREATED).body(created);
   }
 }
