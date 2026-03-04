@@ -1,128 +1,73 @@
-PF_SELENIUM – LOG DE PASOS DEL PROYECTO
-=====================================
+PROJECT: pf-selenium
+GOAL:
+Build a realistic full-stack project focused on Docker, Spring Boot, Nginx, and E2E tests with Selenium.
 
-OBJETIVO DEL PROYECTO
---------------------
-Crear un proyecto de portfolio QA no-junior con:
-- App fullstack
-- Automatización E2E con Selenium (Java)
-- Docker + CI
-- Enfoque en testabilidad, estabilidad y legibilidad
+==================================================
+PHASE 1 - BASE INFRASTRUCTURE
+==================================================
 
+- Spring Boot project creation (Java 17).
+- Backend dockerized with a dedicated Dockerfile.
+- PostgreSQL running via Docker Compose.
+- Spring profiles configuration:
+  - application.yml
+  - application-docker.yml
+- Resolved datasource and driver issues.
+- Successful backend <-> PostgreSQL connectivity.
 
-FASE 0 – PREPARACIÓN DEL ENTORNO (WINDOWS)
-------------------------------------------
+==================================================
+PHASE 2 - BACKEND API
+==================================================
 
-Software instalado:
-- Git
-- IntelliJ IDEA
-- JDK 17 (Eclipse Temurin)
-- Docker Desktop
-- Node.js + npm
-- Google Chrome
+- Health endpoint:
+  - GET /health
+- User domain created.
+- UserRepository with Spring Data JPA.
+- UserController with:
+  - GET /users
+  - POST /users
+- Real persistence verified in PostgreSQL.
 
-Configuraciones clave:
-- JAVA_HOME y PATH configurados por el instalador
-- PowerShell ExecutionPolicy cambiado a RemoteSigned (CurrentUser)
-- Git configurado con user.name y user.email
-- Rama por defecto de Git fijada a main
-- Virtualización activada en BIOS (SVM Mode en ASUS B550)
+==================================================
+PHASE 3 - NGINX + FRONTEND
+==================================================
 
+- Nginx as an independent service.
+- Nginx serves the static frontend.
+- /api proxied to the backend.
+- Common issues resolved:
+  - Nginx welcome page from bad config.
+  - Incorrect routes without /api.
+  - Confusion between ports 8080 / 8081.
+- Basic frontend in English:
+  - index.html
+  - styles.css
+  - app.js
+- Frontend allows:
+  - Create users
+  - List users
+  - View health status
 
-FASE 1 – CREACIÓN DEL REPO Y ESTRUCTURA BASE
---------------------------------------------
+==================================================
+PHASE 4 - DOCKER COMPOSE
+==================================================
 
-Ubicación local del proyecto:
-C:\dev\pf_selenium
+- Services:
+  - backend
+  - db (PostgreSQL)
+  - web (Nginx)
+- Shared network.
+- Persistent volume for PostgreSQL.
+- Full startup with:
+  docker compose up --build
 
-Repositorio GitHub:
-pf-selenium (público)
+==================================================
+CURRENT STATUS
+==================================================
 
-Estructura inicial del proyecto:
-- /app
-- /e2e
-- /.github/workflows
-- README.md
-- .gitignore
-- .editorconfig
-
-Primer commit:
-"chore: bootstrap repository structure"
-
-Buenas prácticas aplicadas:
-- Trabajo siempre por ramas
-- PRs aunque sea proyecto individual
-- Commits con intención clara
-
-
-FASE 2 – DOCKER COMPOSE BÁSICO (SKELETON)
------------------------------------------
-
-Objetivo:
-Verificar que el proyecto es portable y ejecutable con Docker.
-
-docker-compose.yml inicial:
-- Servicio web con nginx:alpine
-- Puerto local 8080 → container 80
-
-Comandos clave:
-- docker compose up -d
-- docker compose ps
-- docker compose down
-
-Resultado:
-- nginx accesible en http://localhost:8080
-- Docker funcionando correctamente
-
-PR:
-"chore: add docker compose skeleton"
-Mergeado a main
-
-
-FASE 3 – DOCKER + POSTGRES
---------------------------
-
-Objetivo:
-Añadir base de datos real con persistencia.
-
-Cambios en docker-compose.yml:
-- Servicio db con postgres:16-alpine
-- Variables de entorno:
-  - POSTGRES_DB=pf
-  - POSTGRES_USER=pf_user
-  - POSTGRES_PASSWORD=pf_pass
-- Volumen persistente: pf_db_data
-- Puerto 5432 expuesto
-
-Verificación:
-- docker compose exec db psql -U pf_user -d pf -c "SELECT version();"
-- Comprobada persistencia tras down/up
-
-Resultado:
-- Postgres funcionando correctamente en Docker
-- Infraestructura lista para backend real
-
-PR:
-"chore: add postgres service to docker compose"
-Mergeado a main
-
-
-ESTADO ACTUAL DEL PROYECTO
--------------------------
-- Repo limpio y organizado
-- Docker + Postgres funcionando
-- Historial de PRs correcto
-- Base sólida para empezar backend Spring Boot
-
-
-PRÓXIMO PASO PLANIFICADO
------------------------
-- Crear backend Spring Boot mínimo
-- Conectar a Postgres vía Docker
-- Endpoint /health para smoke testing
-- Preparar base para automatización E2E
-
-
-NOTAS PERSONALES
-----------------
-(Aquí añadir decisiones, problemas, ideas futuras, recordatorios, etc.)
+- Full project (code + UI) is in English.
+- Frontend works at http://localhost:8080
+- API accessible via /api/*
+- Persistence working.
+- Project merged into main.
+- New branch created for e2e.

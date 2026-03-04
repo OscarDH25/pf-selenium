@@ -10,6 +10,7 @@ const usernameInput = el("username");
 const clearBtn = el("clearBtn");
 
 const refreshUsersBtn = el("refreshUsersBtn");
+const resetUsersBtn = el("resetUsersBtn");
 const usersList = el("usersList");
 const usersCount = el("usersCount");
 
@@ -118,12 +119,35 @@ async function createUser(username) {
   }
 }
 
+async function resetUsers() {
+  try {
+    const res = await fetch(`${API_BASE}/test/reset`, { method: "POST" });
+    if (!res.ok) {
+      const text = await res.text();
+      setDebug(`POST /test/reset failed: ${res.status}. Body: ${text}`);
+      return false;
+    }
+    setDebug("Users reset.");
+    return true;
+  } catch (err) {
+    setDebug(`POST /test/reset error: ${err?.message ?? err}`);
+    return false;
+  }
+}
+
 refreshHealthBtn.addEventListener("click", async () => {
   await checkHealth();
 });
 
 refreshUsersBtn.addEventListener("click", async () => {
   await fetchUsers();
+});
+
+resetUsersBtn.addEventListener("click", async () => {
+  const ok = await resetUsers();
+  if (ok) {
+    await fetchUsers();
+  }
 });
 
 clearBtn.addEventListener("click", () => {

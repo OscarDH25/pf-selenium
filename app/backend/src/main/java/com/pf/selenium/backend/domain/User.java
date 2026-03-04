@@ -1,6 +1,8 @@
 package com.pf.selenium.backend.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
@@ -10,7 +12,9 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(nullable = false)
+  @Column(nullable = false, length = 50)
+  @NotBlank(message = "username is required")
+  @Size(max = 50, message = "username must be at most 50 characters")
   private String username;
 
   protected User() {
