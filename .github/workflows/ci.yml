@@ -43,13 +43,13 @@ jobs:
           chmod +x e2e-java/mvnw
 
       - name: API tests
-        run: ./api-tests/mvnw test
+        run: ./api-tests/mvnw -f api-tests/pom.xml test
 
       - name: E2E Java
         env:
           E2E_BASE_URL: http://host.docker.internal:8080
           E2E_SELENIUM_URL: http://localhost:4444/wd/hub
-        run: ./e2e-java/mvnw test
+        run: ./e2e-java/mvnw -f e2e-java/pom.xml test
 
       - name: E2E Node
         run: |
