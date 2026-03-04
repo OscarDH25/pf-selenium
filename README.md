@@ -6,6 +6,7 @@ QA portfolio project focused on testability and automation.
 - Full-stack app designed for testability (data-testid, deterministic data, reset endpoint)
 - E2E automation with Selenium (smoke flow)
 - Dockerized stack for reproducible runs
+- CI pipeline running API + E2E tests
 
 ## Architecture
 - Nginx serves the frontend and proxies `/api/*` to the backend
@@ -34,5 +35,8 @@ cd e2e
 npm install
 npm test
 ```
+
+## CI
+GitHub Actions runs API tests and both E2E suites on every push and PR.
 
 The test connects to the Selenium container at `http://localhost:4444` and opens the UI at `http://host.docker.internal:8080`.
